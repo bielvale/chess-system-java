@@ -142,13 +142,13 @@ public class ChessMatch {
 	}
 	
 	private ChessPiece king(Color color) {
-		List<Piece> list = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == opponent(color)).collect(Collectors.toList());
+		List<Piece> list = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == color).collect(Collectors.toList());
 		for (Piece p : list) {
 			if (p instanceof King) {
 				return (ChessPiece)p;
 			}
 		}
-		throw new IllegalStateException("There is no " + color + "King on the board");
+		throw new IllegalStateException("There is no " + color + " king on the board");
 	}
 	
 	private boolean testCheck(Color color) {
@@ -186,8 +186,7 @@ public class ChessMatch {
 			}
 		}
 		return true;
-	}		
-	
+	}
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
 		piecesOnTheBoard.add(piece);
